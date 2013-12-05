@@ -14,6 +14,10 @@ urlpatterns = patterns('',
     url(r'^authors/new$', 'authors.views.new'),
     url(r'^authors/create$', 'authors.views.create'),
 
+    url(r'^articles/$', 'articles.views.index'),
+    url(r'^articles/new$', 'articles.views.new'),
+    url(r'^articles/create$', 'articles.views.create'),
+
     url(r'^$', 'authors.views.index'),
     url(r'', 'authors.views.index'),
 )

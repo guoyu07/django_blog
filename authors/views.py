@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, RequestContext
-from authors.models import *
+from authors.models import Author
 from django.contrib.syndication.views import Feed
 from django.views.decorators.csrf import csrf_protect
 
