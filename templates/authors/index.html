@@ -1,0 +1,13 @@
+{% include 'common/header.html' %}
+
+  {% if authors %}
+    {% for author in authors %}
+      <div>
+        <h1>{{ author.name }}</h1>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div>没有博主入住，赶快邀请注册吧~</div>
+  {% endif %}
+
+{% include 'common/footer.html' %}
