@@ -1,0 +1,30 @@
+{% include 'common/header.html' %}
+
+
+<div class="row">
+  <div class="nine columns" role="content">
+    <h3>创建博主</h3>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="/authors/create" method="post">
+      {% csrf_token %}
+
+      <div class="row">
+       <div class="large-12 columns">
+          <label>博主名称：</label>
+          <input type="text" name="name" placeholder="请输入博主名称" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns">
+          <input type="submit" value="取消" class="button secondary round small" />&nbsp;&nbsp;
+          <input type="submit" value="创建" class="button round small" />
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% include 'common/footer.html' %}

@@ -10,7 +10,10 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^authors/', 'authors.views.list_authors'),
-    url(r'^$', 'authors.views.list_authors'),
-    url(r'', 'authors.views.list_authors'),
+    url(r'^authors/$', 'authors.views.index'),
+    url(r'^authors/new$', 'authors.views.new'),
+    url(r'^authors/create$', 'authors.views.create'),
+
+    url(r'^$', 'authors.views.index'),
+    url(r'', 'authors.views.index'),
 )

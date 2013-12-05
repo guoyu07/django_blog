@@ -1,15 +1,21 @@
-<div class="row">
-  {% include 'common/header.html' %}
+{% include 'common/header.html' %}
 
+<div class="row">
+  <div class="nine columns" role="content">
     {% if authors %}
-      {% for author in authors %}
-        <div>
-          <h1>{{ author.name }}</h1>
-        </div>
-      {% endfor %}
+      <ul>
+        {% for author in authors %}
+          <li>
+            <a href="">{{ author.name }}</a>，创建时间 {{ author.created_at | date:"Y-m-d H:i:s" }}
+          </li>
+        {% endfor %}
+      </ul>
     {% else %}
       <div>没有博主入住，赶快邀请注册吧~</div>
     {% endif %}
-
-  {% include 'common/footer.html' %}
+    <br>
+    <a href="/authors/new" class="button round small">创建</a>
+  </div>
 </div>
+
+{% include 'common/footer.html' %}
