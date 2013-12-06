@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^articles/new$', 'blog.views.article_new'),
     url(r'^articles/create$', 'blog.views.article_create'),
 
-    url(r'^$', 'blog.views.author_index'),
-    url(r'', 'blog.views.author_index'),
+    url(r'^comments/$', 'blog.views.comment_index'),
+
+    url(r'^$', 'blog.views.home'),
+    url(r'', 'blog.views.home'),
 )

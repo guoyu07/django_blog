@@ -20,7 +20,21 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
-        return u'%s' %(self.name)
+        return u'%s' %(self.title)
 
     class Meta:
         db_table = "articles"
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(Author)
+    article = models.ForeignKey(Article)
+    content = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True, auto_now_add=True)
+
+    def __unicode__(self):
+        return u'%s' %(self.content)
+
+    class Meta:
+        db_table = "comments"

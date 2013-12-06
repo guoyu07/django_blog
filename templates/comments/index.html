@@ -1,0 +1,20 @@
+{% include 'common/header.html' %}
+
+<div class="row">
+  <div class="nine columns" role="content">
+    <h3>评论列表</h3>
+    {% if comments %}
+      <ul>
+        {% for comment in comments %}
+          <li>
+            {{ comment.content }}，创建时间 {{ comment.created_at | date:"Y-m-d H:i:s" }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div>没有评论，赶快去评论吧~</div>
+    {% endif %}
+  </div>
+</div>
+
+{% include 'common/footer.html' %}
