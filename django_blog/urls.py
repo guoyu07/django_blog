@@ -10,14 +10,14 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^authors/$', 'authors.views.index'),
-    url(r'^authors/new$', 'authors.views.new'),
-    url(r'^authors/create$', 'authors.views.create'),
+    url(r'^authors/$', 'blog.views.author_index'),
+    url(r'^authors/new$', 'blog.views.author_new'),
+    url(r'^authors/create$', 'blog.views.author_create'),
 
-    url(r'^articles/$', 'articles.views.index'),
-    url(r'^articles/new$', 'articles.views.new'),
-    url(r'^articles/create$', 'articles.views.create'),
+    url(r'^articles/$', 'blog.views.article_index'),
+    url(r'^articles/new$', 'blog.views.article_new'),
+    url(r'^articles/create$', 'blog.views.article_create'),
 
-    url(r'^$', 'authors.views.index'),
-    url(r'', 'authors.views.index'),
+    url(r'^$', 'blog.views.author_index'),
+    url(r'', 'blog.views.author_index'),
 )
