@@ -7,7 +7,7 @@
       <ul>
         {% for article in articles %}
           <li>
-            <a href="">{{ article.title }}</a>，创建时间 {{ article.created_at | date:"Y-m-d H:i:s" }}
+            <a href="">{{ article.title }}</a>，<a href="">{{ article.author.name }}</a>，{{ article.created_at | date:"Y-m-d H:i:s" }}
           </li>
         {% endfor %}
       </ul>

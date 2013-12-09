@@ -15,9 +15,9 @@
           {% endif %}
           <ul class="nav-bar">
             <li><a href="/">首页</a></li>
-            <li><a href="/authors/">博主</a></li>
             <li><a href="/articles/">文章</a></li>
             <li><a href="/comments/">评论</a></li>
+            <li><a href="/authors/">博主</a></li>
             {% if request.session.author_name %}
               <li><a href="/accounts/logout">注销</a></li>
             {% else %}

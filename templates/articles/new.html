@@ -11,14 +11,21 @@
       <div class="row">
        <div class="large-12 columns">
           <label>博主名称：</label>
-          <input type="text" name="name" placeholder="请输入博主名称" />
+          <input type="text" name="name" disabled="disabled" value="{{ request.session.author_name }}" />
         </div>
       </div>
 
       <div class="row">
        <div class="large-12 columns">
           <label>博客标题：</label>
-          <input type="text" name="title" placeholder="请输入博客标题" />
+          <input type="text" name="title" placeholder="请输入博客标题" size="60" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <label>博客正文</label>
+          <textarea rows="10" cols="62" name="content" placeholder="请输入博客正文" ></textarea>
         </div>
       </div>
 

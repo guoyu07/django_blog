@@ -50,10 +50,10 @@ def article_new(request):
     return render_to_response('articles/new.html', {}, context_instance=RequestContext(request))
 
 def article_create(request):
-    name = request.POST.get('name', '')
     title = request.POST.get('title', '')
-    author = Author.objects.get(name=name)
-    article = Article(title=title, author=author)
+    content = request.POST.get('content', '')
+    author = Author.objects.get(name=request.session["author_name"])
+    article = Article(title=title, content=content, author=author)
     article.save()
     articles = Article.objects.order_by('id')
     return render_to_response('articles/index.html', {'articles': articles}, context_instance=RequestContext(request))
