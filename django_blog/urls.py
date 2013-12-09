@@ -20,6 +20,9 @@ urlpatterns = patterns('',
 
     url(r'^comments/$', 'blog.views.comment_index'),
 
+    url(r'^accounts/login$', 'blog.views.account_login'),
+    url(r'^accounts/logout$', 'blog.views.account_logout'),
+
     url(r'^$', 'blog.views.home'),
     url(r'', 'blog.views.home'),
 )
