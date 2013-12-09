@@ -48,7 +48,8 @@ def article_index(request):
 def article_show(request):
     article_id = request.GET.get('id', '')
     article = Article.objects.get(id=article_id)
-    return render_to_response('articles/show.html', {'article': article}, context_instance=RequestContext(request))
+    comments =  article.comment_set.all()
+    return render_to_response('articles/show.html', {'article': article, 'comments': comments}, context_instance=RequestContext(request))
 
 @csrf_protect
 def article_new(request):
@@ -67,3 +68,14 @@ def article_create(request):
 def comment_index(request):
     comments = Comment.objects.order_by('id')
     return render_to_response('comments/index.html', {'comments': comments}, context_instance=RequestContext(request))
+
+def comment_create(request):
+    article_id = request.POST.get('article_id', '')
+    content = request.POST.get('content', '')
+    article = Article.objects.get(id=article_id)
+    author = Author.objects.get(name=request.session["author_name"])
+    comment = Comment(content=content, author=author, article=article)
+    comment.save()
+    return redirect('/articles/show?id=%d'%article.id)
+
+

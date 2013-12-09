@@ -2,13 +2,54 @@
 
 <div class="row">
   <div class="nine columns" role="content">
-    <h3>{{ article.title }}</h3>
+    <div class="panel callout radius">
+        <h3>{{ article.title }}</h3>
 
-    <p>{{ article.author.name }}, {{ article.created_at | date:"Y-m-d H:i:s" }}</p>
+        <p>{{ article.author.name }}, {{ article.created_at | date:"Y-m-d H:i:s" }}</p>
 
-    <div>
-      {{ article.content }}
+        <p>{{ article.content }}</p>
     </div>
+
+   <br>
+
+    <div class="panel">
+        {% if comments %}
+          {% for comment in comments %}
+            <fieldset>
+                <legend>{{ comment.author.name }},  {{ comment.created_at | date:"Y-m-d H:i:s" }}</legend>
+                {{ comment.content }}
+            </fieldset>
+          {% endfor %}
+        {% endif %}
+
+        {% if request.session.author_name %}
+            <form action="/comments/create" method="post">
+              {% csrf_token %}
+              <input type='hidden' name='article_id' value='{{ article.id }}' />
+
+              <div class="row">
+               <div class="large-12 columns">
+                  <label>博主名称：</label>
+                  <input type="text" name="name" disabled="disabled" value="{{ request.session.author_name }}" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="large-12 columns">
+                  <label>评论正文</label>
+                  <textarea rows="3" cols="62" name="content" placeholder="请输入评论正文" ></textarea>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="columns">
+                  <input type="submit" value="评论" class="button round small" />
+                </div>
+              </div>
+            </form>
+        {% endif %}
+    </div>
+
   </div>
 </div>
 

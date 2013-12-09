@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^articles/show', 'blog.views.article_show'),
 
     url(r'^comments/$', 'blog.views.comment_index'),
+    url(r'^comments/create$', 'blog.views.comment_create'),
 
     url(r'^accounts/login$', 'blog.views.account_login'),
     url(r'^accounts/logout$', 'blog.views.account_logout'),
