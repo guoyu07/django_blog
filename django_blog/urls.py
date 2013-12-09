@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^articles/$', 'blog.views.article_index'),
     url(r'^articles/new$', 'blog.views.article_new'),
     url(r'^articles/create$', 'blog.views.article_create'),
+    url(r'^articles/show', 'blog.views.article_show'),
 
     url(r'^comments/$', 'blog.views.comment_index'),
 

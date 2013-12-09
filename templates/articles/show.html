@@ -1,0 +1,15 @@
+{% include 'common/header.html' %}
+
+<div class="row">
+  <div class="nine columns" role="content">
+    <h3>{{ article.title }}</h3>
+
+    <p>{{ article.author.name }}, {{ article.created_at | date:"Y-m-d H:i:s" }}</p>
+
+    <div>
+      {{ article.content }}
+    </div>
+  </div>
+</div>
+
+{% include 'common/footer.html' %}

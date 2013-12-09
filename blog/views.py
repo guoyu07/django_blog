@@ -45,6 +45,11 @@ def article_index(request):
     articles = Article.objects.order_by('id')
     return render_to_response('articles/index.html', {'articles': articles}, context_instance=RequestContext(request))
 
+def article_show(request):
+    article_id = request.GET.get('id', '')
+    article = Article.objects.get(id=article_id)
+    return render_to_response('articles/show.html', {'article': article}, context_instance=RequestContext(request))
+
 @csrf_protect
 def article_new(request):
     return render_to_response('articles/new.html', {}, context_instance=RequestContext(request))
