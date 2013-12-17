@@ -2,6 +2,7 @@ from django.db import models
 
 class Author(models.Model):
     name = models.CharField(max_length=30)
+    email = models.CharField(max_length=30, null=False, blank=True, unique=True, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=True)
 
