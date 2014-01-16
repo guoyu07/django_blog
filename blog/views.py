@@ -1,8 +1,9 @@
-from django.shortcuts import render, render_to_response, RequestContext, redirect
+from django.shortcuts import render_to_response, RequestContext, redirect
 from blog.models import Article, Author, Comment
-from django.contrib.syndication.views import Feed
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.cache import cache_page
 from django.core.cache import cache
+
 
 # home view
 def home(request):
@@ -42,6 +43,7 @@ def author_create(request):
     return render_to_response('authors/index.html', {'authors': authors}, context_instance=RequestContext(request))
 
 # article methods
+@cache_page(60*2)
 def article_index(request):
     articles = Article.objects.order_by('id')
     return render_to_response('articles/index.html', {'articles': articles}, context_instance=RequestContext(request))
