@@ -2,6 +2,7 @@ from django.shortcuts import render, render_to_response, RequestContext, redirec
 from blog.models import Article, Author, Comment
 from django.contrib.syndication.views import Feed
 from django.views.decorators.csrf import csrf_protect
+from django.core.cache import cache
 
 # home view
 def home(request):
@@ -45,11 +46,20 @@ def article_index(request):
     articles = Article.objects.order_by('id')
     return render_to_response('articles/index.html', {'articles': articles}, context_instance=RequestContext(request))
 
+
 def article_show(request):
     article_id = request.GET.get('id', '')
-    article = Article.objects.get(id=article_id)
-    comments =  article.comment_set.all()
+    comments_key = "comments_{}".format(article_id)
+    article = cache.get(article_id)
+    if not article:
+        article = Article.objects.filter(id=article_id).first()
+        comments =  article.comment_set.all()
+        cache.set(article_id, article, 60*2)
+        cache.set(comments_key, comments, 60*2)
+    else:
+        comments =  cache.get(comments_key)
     return render_to_response('articles/show.html', {'article': article, 'comments': comments}, context_instance=RequestContext(request))
+
 
 @csrf_protect
 def article_new(request):
